@@ -19,6 +19,7 @@ defmodule Workspace.MixProject do
   def application do
     [
       mod: {Workspace.Application, []},
+      mod: {Workspace.ReverseProxy, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -51,6 +52,8 @@ defmodule Workspace.MixProject do
       {:finch, "~> 0.13"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
+      {:httpoison, "~> 0.11"},
+      {:terraform, "~> 1.0.1"},
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},

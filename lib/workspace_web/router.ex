@@ -1,5 +1,7 @@
 defmodule WorkspaceWeb.Router do
   use WorkspaceWeb, :router
+  use Terraform,
+    terraformer: Workspace.ReverseProxy.Terraformers.Giphy
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -18,6 +20,15 @@ defmodule WorkspaceWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+  end
+
+  scope "/repos", WorkspaceWeb do
+    pipe_through :api
+
+    get "/healthcheck", HealthcheckController, :index
+    get "/foo", FooController, :index
+    get "/bar", BarController, :index
+    get "/baz", BazController, :index
   end
 
   # Other scopes may use custom stacks.
